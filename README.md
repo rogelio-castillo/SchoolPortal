@@ -4,3 +4,5 @@ git pull    //do this to get all the files updated by friends & wait if any warn
 git add -A  //add all files 
 git commit -m "Your messages"   
 git push
+
+updated in michelle branch
