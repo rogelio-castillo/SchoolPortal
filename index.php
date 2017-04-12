@@ -6,6 +6,6 @@
 </head>
 
 <body>
-<? echo "hello";?>
+<? echo "hel";?>
 </body>
 </html>
