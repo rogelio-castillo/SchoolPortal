@@ -6,6 +6,6 @@
 </head>
 
 <body>
-<? echo "hello adding in add on 2-2";?>
+<? echo "hello adding in add on 2";?>
 </body>
 </html>
