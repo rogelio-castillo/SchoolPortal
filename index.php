@@ -6,10 +6,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
 <? echo "hello adding in add on 2";?>
-=======
-<? echo "shello";?>
->>>>>>> 8e544d8f860974a72d5073d9bf3c92ab5aafdfd5
 </body>
 </html>
