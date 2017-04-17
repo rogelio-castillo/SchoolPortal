@@ -1,6 +1,18 @@
 <?php  
 	require_once("_includes/init.php");
-?>
+	$teacher = new Teacher();
+$teacher->firstname = "Avani";
+$teacher->lastname = "Shah"; 
+$teacher->uid = "0123456789";
+$teacher->username = "ashah";
+$teacher->password = "abc"; 
+
+$teacher->create();
+
+print_r(Teacher::get("0123456789"));
+
+	?>
+
 
 
 
