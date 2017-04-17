@@ -1,4 +1,6 @@
 <?
+require_once("database.php");
+
 class Teacher{
 	
 	public $id;
