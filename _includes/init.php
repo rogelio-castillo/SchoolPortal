@@ -1,7 +1,7 @@
 <?php
 
 require_once("database.php");
-require_once("parent.php");
+require_once("teacher.php");
 
 
 
