@@ -37,7 +37,7 @@ class Teacher{
 		return $result_set;
 	}
 	
-	public function create(){
+	public static function create(){
 		global $db;
 		$query = "INSERT INTO `".self::$tableName."` (`uid`, `firstname`, `lastname`, `username`,`password`) 
 				   VALUES ('".
