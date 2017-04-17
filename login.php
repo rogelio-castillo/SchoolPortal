@@ -1,5 +1,8 @@
 <?php  
 	require_once("_includes/init.php");
+    $something= new Teacher();
+    print_r($something::get(2));
+    
 ?>
 
 
