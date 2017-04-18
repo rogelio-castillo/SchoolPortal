@@ -28,6 +28,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+  
+  	
+  
   </head>
 
   <body>
@@ -54,7 +57,97 @@
     </nav>
 
     <div class="container myContent">
-    	<p>hello</p>
+    	<? //form code start here ?>
+        <form class ="form-horizontal">
+		  		 
+		  <div class="form-group">
+			<label for="username" class ="control-label col-md-2">Username</label>
+			<div class ="col-sm-10">
+			<input type="text" class="form-control" id="username" placeholder="User Name">
+			</div>
+		  </div>	
+		  
+		  <div class="form-group">
+			<label for="firstname" class ="control-label col-sm-2">First Name</label>
+			<div class ="col-sm-10">
+			<input type="text" class="form-control" id="firstname" placeholder="First Name">
+			</div>
+		  </div>
+		  
+		  <div class="form-group">
+			<label for="lastname" class ="control-label col-sm-2">Last Name</label>
+			<div class ="col-sm-10">
+			<input type="text" class="form-control" id="lastname" placeholder="Last Name">
+			</div>
+		  </div>
+		  
+		  <div class = "form-group">
+		  <div class ="col-sm-10 col-sm-offset-2">
+		  <button type="submit" class="btn btn-default">Submit</button>
+		  </div>
+		  </div>
+        </form>
+        
+		<? //form 2 ?>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <input type="file" id="exampleInputFile">
+            <p class="help-block">Example block-level help text here.</p>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Check me out
+            </label>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        
+        
+        <? //form code ends here ?>
+        
+        
+        <? //table code start here ?>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Username</th>
+            </tr>
+          </thead>
+           <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry the Bird</td>
+              <td>ton</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+         </table>
+        <? //table code ends here ?>
 
     </div><!-- /.container -->
 
