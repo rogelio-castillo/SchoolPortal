@@ -1,3 +1,9 @@
+<?php
+	if(isset($_GET["logout"])){
+		User::logout();
+		redirect_to("login.php");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

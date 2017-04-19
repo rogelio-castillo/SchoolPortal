@@ -1,5 +1,9 @@
 <?php 
-	require_once("_includes/init.php"); 
+	require_once("_includes/init.php");
+	if(!User::isLoggedIn()){
+		redirect_to("login.php");
+	}
+	
 	require_once("_files/header.php"); 
 ?>
     
@@ -11,10 +15,8 @@
     <?php require_once("_files/menu.php"); ?>
 
     <div class="container myContent">
-    	
-        <?php require_once("_files/templateFiles/form.html"); ?>
-        
-        <?php require_once("_files/templateFiles/table.html"); ?>
+
+	<?php printA(User::sesion_id()); ?>
         
     </div><!-- /.container -->
     
