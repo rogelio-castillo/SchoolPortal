@@ -3,7 +3,7 @@
 	require_once("_includes/init.php");
 
 ?>
-=======
+
 <?php 
 require_once("_includes/init.php");
 //check if user was already login 
@@ -34,7 +34,7 @@ if(isset($_POST["login-submit"])){
 		$invalidLogin = true;
 	}
 }
->>>>>>> master
+
 
 
 
