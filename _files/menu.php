@@ -17,14 +17,10 @@
         <li><a href="#contact">To-Do List</a></li>
         <li><a href="#contact">WishList</a></li>
         <li><a href="#contact">Message Board</a></li>
-        <li> <a href="<?php echo $_SERVER["PHP_SELF"]."?logout=logout"; ?>">Logout</a> </li>
+        <li class="logout"> <a href="<?php echo $_SERVER["PHP_SELF"]."?logout=logout"; ?>">Logout</a> </li>
       </ul>
     <?php }//if user is logged in display menu 
-		else{ ?>
-		<ul class="nav navbar-nav">
-            <li> <a href="login.php">Login/Resgister</a> </li>
-        </ul>
-		<?php }	?>
+		 ?>
     
     </div><!--/.nav-collapse -->
   </div>

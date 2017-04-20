@@ -2,7 +2,7 @@
 
 class User{
 	private static $tableName = "user";
-	public $vars = array("id","username","password","firstname","lastname","type","class");
+	private static $vars = array("id","username","password","firstname","lastname","type","class");
 	
 	
 	public $id;
@@ -13,9 +13,8 @@ class User{
 	public $type;
 	public $class;
 	
-	public static function sesion_id(){
+	public static function userinfo(){
 		if(!self::isLoggedIn())return false;
-		printA( self::get($_SESSION["userid"]) );die;
 		return self::get($_SESSION["userid"]);
 	}
 	
@@ -34,7 +33,7 @@ class User{
 		
 		$className = get_called_class();
 		$user = new $className;
-		foreach($user->vars as $variable){
+		foreach(self::$vars as $variable){
 			$user->{$variable} = $row[$variable];
 		}
 		return $user;
@@ -42,50 +41,7 @@ class User{
 	
 	
 	
-	public static function delete($id){
-		global $db;
-		$id = $db->validate($id);
-		$query = "DELETE FROM `".self::$tableName."` WHERE id='".$id."'";
-		$result_set = $db->query($query);
-		return $result_set;
-	}
 	
-	public function create(){
-		global $db;
-		$query = "INSERT INTO `".self::$tableName."` (";
-		foreach($this->vars as $index=>$variable){
-			$query .= "`".$variable."`";
-			if($index!=sizeof($this->vars)-1){
-				$query.=", ";
-			}
-		}
-		$query .= ")";		
-		$query .= "VALUES (";
-		foreach($this->vars as $index=>$variable){
-			$query .= "'".$this->{$variable} . "'";
-			if($index!=sizeof($this->vars)-1){
-				$query.=", ";
-			}
-		}
-		$query .= ")";
-		$result_set = $db->query($query);
-		return $result_set;
-		
-	}
-	
-	public function update(){
-		global $db;
-		$query = "UPDATE `".self::$tableName."` SET ";
-		foreach($this->vars as $index=>$variable){
-			$query .= "`".$variable."` = '". $this->{$variable}."'";
-			if($index!=sizeof($this->vars)-1){
-				$query.=", ";
-			}
-		}
-		$query.= " WHERE `id` = '".$this->id."'";
-		$result_set = $db->query($query);
-		return $result_set;
-	}
 	
 	public static function newUser($postData){
 		global $db;
@@ -176,6 +132,55 @@ class User{
 		if(!isset($_SESSION["userid"]))return true;
 		unset($_SESSION["userid"]);return true;
 	}
+	
+	
+	//common functions
+	
+	public static function delete($id){
+		global $db;
+		$id = $db->validate($id);
+		$query = "DELETE FROM `".self::$tableName."` WHERE id='".$id."'";
+		$result_set = $db->query($query);
+		return $result_set;
+	}
+	
+	public function create(){
+		global $db;
+		$query = "INSERT INTO `".self::$tableName."` (";
+		foreach(self::$vars as $index=>$variable){
+			$query .= "`".$variable."`";
+			if($index!=sizeof(self::$vars)-1){
+				$query.=", ";
+			}
+		}
+		$query .= ")";		
+		$query .= "VALUES (";
+		foreach(self::$vars as $index=>$variable){
+			$query .= "'".$this->{$variable} . "'";
+			if($index!=sizeof(self::$vars)-1){
+				$query.=", ";
+			}
+		}
+		$query .= ")";
+		$result_set = $db->query($query);
+		return $result_set;
+		
+	}
+	
+	public function update(){
+		global $db;
+		$query = "UPDATE `".self::$tableName."` SET ";
+		foreach(self::$vars as $index=>$variable){
+			$query .= "`".$variable."` = '". $this->{$variable}."'";
+			if($index!=sizeof(self::$vars)-1){
+				$query.=", ";
+			}
+		}
+		$query.= " WHERE `id` = '".$this->id."'";
+		$result_set = $db->query($query);
+		return $result_set;
+	}
+	
 	
 	
 }

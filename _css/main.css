@@ -155,3 +155,12 @@ footer p:last-child {
 .panel-login{
 	margin-top:100px;
 }
+
+li.logout{
+	right:0; 
+	position: absolute ;
+}
+
+div.addClass button, div.addClass{
+	margin: 10px 0;
+}
