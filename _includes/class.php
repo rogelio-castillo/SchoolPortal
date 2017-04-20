@@ -45,8 +45,8 @@ class _Class{
 		if($user->type!=1)return false;
 		
 		$query = "SELECT * FROM ".self::$tableName." WHERE teacher= '".$user->id."'" ;
-		echo $query;die;
-		
+		$result_set = $db->query($query);
+		return $result_set;
 	}
 	
 	
