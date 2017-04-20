@@ -1,6 +1,7 @@
-
-  	<?php require_once("_includes/init.php"); ?>
-  	<?php require_once("_files/header.php"); ?>
+<?php 
+	require_once("_includes/init.php"); 
+	require_once("_files/header.php"); 
+?>
     
   	<title>Starter Template for Bootstrap</title>
   </head>
