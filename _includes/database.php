@@ -19,6 +19,14 @@ class Database{
 		return mysqli_fetch_array($result_set);
 	}
 	
+	public function validate($string){
+		if( get_magic_quotes_gpc() ) { 
+			$value = stripslashes( $string );
+			$value = mysqli_real_escape_string( $this->db, $string );
+		}
+		return $string;
+	}
+	
 }
 
 $db = new Database();
