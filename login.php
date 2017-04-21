@@ -1,8 +1,5 @@
 <?php  
 	require_once("_includes/init.php");
-<<<<<<< HEAD
-    $something= new Teacher();
-    print_r($something::get(2));
     
 =======
 	$teacher = new Teacher();
