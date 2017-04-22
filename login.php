@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-<?php  
-	require_once("_includes/init.php");
-    
-=======
-	$teacher = new Teacher();
-	$teacher->firstname = "shahbaz";
-	$teacher->lastname = "surani";
-	$teacher->username = "sha";
-	$teacher->password = "shap";
-	$teacher->create();
-	
->>>>>>> master
-?>
-=======
+<?php  	require_once("_includes/init.php");?>
 <?php 
 require_once("_includes/init.php");
 //check if user was already login 
@@ -43,7 +29,6 @@ if(isset($_POST["login-submit"])){
 		$invalidLogin = true;
 	}
 }
->>>>>>> master
 
 
 
