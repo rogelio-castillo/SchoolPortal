@@ -1,15 +1,14 @@
 <?php
 
-class _Class{
-	private static $tableName = "class";
-	private static $vars = array("id","classid","className","archive","teacher");
+class _Class extends CommonClass{
+	protected static $tableName = "class";
+	protected static $vars = array("id","classid","className","archive");
 	
 	
 	public $id;
 	public $classid;
 	public $className;
 	public $archive;
-	public $teacher;
 	
 	
 	
@@ -24,6 +23,8 @@ class _Class{
 		if($user->type==1){
 			$className = ( isset($postdata["className"]) && $postdata["className"]!="")? $db->validate($postdata["className"]) : $error[]="Invalid Class class name";
 		}
+		if(!self::isValidId($classid) ) $error[]="Unique class id is already in use.";
+		
 		if(!empty($error))return $error;
 		
 		
@@ -49,7 +50,15 @@ class _Class{
 		return $result_set;
 	}
 	
-	
+	public static function isValidId($id=""){
+		global $db;
+		$id = $db->validate($id);
+		$query = "SELECT count(*) as count FROM ".self::$tableName." WHERE classId= '{$id}'" ;
+		$result_set = $db->query($query);
+		$row = $db->fetch_array($result_set);
+		
+		return $row["count"]==0? true:false;
+	}
 	
 	//common class
 	public static function set($array){
@@ -91,6 +100,8 @@ class _Class{
 		}
 		$query .= ")";
 		$result_set = $db->query($query);
+		$this->id = $db->insert_id();
+		
 		return $result_set;
 		
 	}

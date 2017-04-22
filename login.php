@@ -11,8 +11,7 @@ if(isset($_POST["register-submit"])){
 	$user = User::newUser($_POST);
 	if(empty($user)){
 		redirect_to("userinfo.php");
-	}else{
-		//display error
+	}else{ //display error
 		printA($user);
 	}
 }

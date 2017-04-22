@@ -45,22 +45,54 @@
                 </form>
             </div>
             
-            <table class="table table-bordered">
-               <tbody>
-                <tr>
-                  <td>First Name</td>
-                  <td><?php echo $user->firstname; ?></td>
-                </tr>
-                <tr>
-                  <td>Last  Name</td>
-                  <td><?php echo $user->lastname; ?></td>
-                </tr>
-                <tr>
-                  <td>Username</td>
-                  <td><?php echo $user->username; ?></td>
-                </tr>
-               </tbody>
-            </table>
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                   <tbody>
+                    <tr>
+                      <td>First Name</td>
+                      <td><?php echo $user->firstname; ?></td>
+                    </tr>
+                    <tr>
+                      <td>Last  Name</td>
+                      <td><?php echo $user->lastname; ?></td>
+                    </tr>
+                    <tr>
+                      <td>Username</td>
+                      <td><?php echo $user->username; ?></td>
+                    </tr>
+                   </tbody>
+                </table>
+            </div>
+            
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                   <thead>
+                    <tr>
+                      <th>#</th>
+                      
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Username</th>
+                    </tr>
+                  </thead>
+                   <tbody>
+                    <tr>
+                      <td>First Name</td>
+                      <td><?php echo $user->firstname; ?></td>
+                    </tr>
+                    <tr>
+                      <td>Last  Name</td>
+                      <td><?php echo $user->lastname; ?></td>
+                    </tr>
+                    <tr>
+                      <td>Username</td>
+                      <td><?php echo $user->username; ?></td>
+                    </tr>
+                   </tbody>
+                </table>
+            </div>
+            
+            
         </div>    
     </div><!-- /.container -->
     

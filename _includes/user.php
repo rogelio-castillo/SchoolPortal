@@ -2,7 +2,7 @@
 
 class User{
 	private static $tableName = "user";
-	private static $vars = array("id","username","password","firstname","lastname","type","class");
+	private static $vars = array("id","username","password","firstname","lastname","type");
 	
 	
 	public $id;
@@ -11,7 +11,6 @@ class User{
 	public $firstname;
 	public $lastname;
 	public $type;
-	public $class;
 	
 	public static function userinfo(){
 		if(!self::isLoggedIn())return false;
@@ -47,12 +46,12 @@ class User{
 		global $db;
 		
 		$error = array();
-		$firstname = (isset($postData["firstname"]) && $postData["firstname"]!="")? $db->validate( $postData["firstname"] ):$error[]="First name is not set";
-		$lastname = (isset($postData["lastname"])   && $postData["lastname"]!="")? 	$db->validate( $postData["lastname"] ):	$error[]="Last name is not set";
-		$type = (isset($postData["type"])   	&& ($postData["type"]=="1" || $postData["type"]=="2" ))? 				$db->validate( $postData["type"] ):		$error[]="Type is Invalid";
-		$username = (isset($postData["username"])   && $postData["username"]!="")? 	$db->validate( $postData["username"] ):	$error[]="Username name is not set";
-		$password = (isset($postData["password"])   && $postData["password"]!="")? 	$db->validate( $postData["password"] ):	$error[]="Password is not set";
-		$confirmPassword = (isset($postData["confirm-password"]) && $postData["confirm-password"]===$postData["password"])? 	$db->validate( $postData["confirm-password"] ):$error[]="Confirm password is not set";
+		$firstname = (isset($postData["firstname"]) && $postData["firstname"]!="")? $db->validate( $postData["firstname"] ):$error[]="First name is invalid";
+		$lastname = (isset($postData["lastname"])   && $postData["lastname"]!="")? 	$db->validate( $postData["lastname"] ):	$error[]="Last name is invalid";
+		$type = (isset($postData["type"]) && ($postData["type"]=="1" || $postData["type"]=="2" ))? $db->validate( $postData["type"] ):$error[]="Type is Invalid";
+		$username = (isset($postData["username"])   && $postData["username"]!="")? 	$db->validate( $postData["username"] ):	$error[]="Username name is invalid";
+		$password = (isset($postData["password"])   && $postData["password"]!="")? 	$db->validate( $postData["password"] ):	$error[]="Password is invalid";
+		$confirmPassword = (isset($postData["confirm-password"]) && $postData["confirm-password"]===$postData["password"])? 	$db->validate( $postData["confirm-password"] ):$error[]="Confirm password is invalid";
 		if(!empty($error)) return $error;
 		
 		if(!self::isUserValid($username)) $error[]="Username is invalid";	if(!empty($error)) return $error;
@@ -66,7 +65,6 @@ class User{
 		$user->password = hash("sha256",$password);
 		$user->type = $type;
 		$user->id=$user->getId();
-		
 		$user->create();
 		
 		self::signin($username,$password);
@@ -162,6 +160,7 @@ class User{
 			}
 		}
 		$query .= ")";
+		
 		$result_set = $db->query($query);
 		return $result_set;
 		
