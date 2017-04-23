@@ -1,16 +1,35 @@
-
-  	<?php require_once("_includes/init.php"); ?>
-  	<?php require_once("_files/header.php"); ?>
+<?php 
+	require_once("_includes/init.php");
+	//printA($_POST);die;
+	if(!User::isLoggedIn()){
+		redirect_to("index.php");
+	}
+	$user = User::userinfo();
+	if (!isset($_GET["classid"]) || !_Class::isvalid($_GET["classid"])){
+		redirect_to("userinfo.php");
+		
+	}
+	
+	
+	//you will get all the to-do list from db
+	//check if add todolist form is submited then validate and add everything to db
+	//display all messages
+	
+	
+	
+  	require_once("_files/header.php"); ?>
     
-  	<title>Starter Template for Bootstrap</title>
+  	<title>To-do list</title>
   </head>
 
   <body>
-
+  
     <?php require_once("_files/menu.php"); ?>
 
+	
+	
     <div class="container myContent row">
-    	
+	
        <h1>Teacher View</h1>
 		<form>
 		  <div class="form-group">

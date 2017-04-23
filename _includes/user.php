@@ -18,7 +18,7 @@ class User extends commonClass{
 	}
 	
 	public static function isLoggedIn(){
-		return (isset($_SESSION["userid"]) || $_SESSION["userid"]!="")? true:false;
+		return (isset($_SESSION["userid"]) && $_SESSION["userid"]!="")? true:false;
 	}
 	
 	public static function get($id){
