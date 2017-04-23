@@ -1,10 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Untitled Document</title>
-</head>
+<?php 
+	require_once("_includes/init.php"); 
+	require_once("_files/header.php"); 
+?>
+  	<title>Class</title>
+  </head>
 
-<body>
-</body>
+  <body>
+
+    <?php require_once("_files/menu.php"); ?>
+
+    <div class="container myContent">
+    	
+        change this link from userinfo->id and class name to message page and then delete it and delete class.php from root
+        
+    </div><!-- /.container -->
+    
+	<?php require_once("_files/footer.php"); ?>
+    
+  </body>
 </html>

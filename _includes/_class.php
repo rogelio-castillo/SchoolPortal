@@ -85,6 +85,16 @@ class _Class extends CommonClass{
 		$class[0]->update();
 	}
 	
+	public static function isvalid($classid){
+		$class = self::find_by_classid($classid);
+		if(!$class || $class->archive==1)
+			return false;
+		$user = User::userinfo();
+		
+		$userClass = UserClass::find_by_class_user_id($user->id,$class->classid);
+		return (!empty($userClass))? true:false;
+	}
+	
 	
 	
 }

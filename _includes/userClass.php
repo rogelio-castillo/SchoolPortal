@@ -12,6 +12,10 @@ class UserClass extends commonClass{
 	public $classinfo;
 	public $parentsCount=0;
 	
+	public static function find_by_class_user_id( $userid, $classid){
+		return self::find_by_array(array("userid","classid"),array($userid,$classid));
+	}
+	
 	public static function add($classid, $userid){
 		global $error;
 		$class = self::set(array("classid"=>$classid,"userid"=>$userid));
