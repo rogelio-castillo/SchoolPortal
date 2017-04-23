@@ -9,10 +9,8 @@ if(User::isLoggedIn()){
 
 if(isset($_POST["register-submit"])){
 	$user = User::newUser($_POST);
-	if(empty($user)){
+	if(User::isLoggedIn()){
 		redirect_to("userinfo.php");
-	}else{ //display error
-		printA($user);
 	}
 }
 
@@ -46,6 +44,7 @@ require_once("_files/header.php");
     	
         <div class="row">
 			<div class="col-md-6 col-md-offset-3">
+				<?php print_error();?>
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">

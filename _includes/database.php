@@ -38,7 +38,7 @@ class Database{
 	
 	public function insert_id() {
 	  // get the last id inserted over the current db connection
-	  return mysqli_insert_id($this->connection);
+	  return mysqli_insert_id($this->db);
 	}
 	
 	
