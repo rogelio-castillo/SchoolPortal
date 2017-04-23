@@ -1,5 +1,9 @@
 <?php 
-	require_once("_includes/init.php"); 
+	require_once("_includes/init.php");
+	if(!User::isLoggedIn()){
+		redirect_to("index.php");
+	}
+	$user = User::userinfo();
 	
 	//get value of id that was sent from hidden field in form
 	$id=$_POST['id'];
