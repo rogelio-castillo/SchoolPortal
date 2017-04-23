@@ -1,3 +1,12 @@
+<?php
+	if(isset($_GET["logout"])){
+		User::logout();
+		redirect_to("index.php");
+	}
+	
+	//for menu items: messages, todo list...
+	if(isset($_GET["classid"]) && !_Class::isvalid($_GET["classid"]))redirect_to("userinfo.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,3 +46,6 @@
     <script src="_js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="_js/ie10-viewport-bug-workaround.js"></script>
+    
+    
+    <script src="_js/main.js"></script>

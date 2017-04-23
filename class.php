@@ -2,8 +2,7 @@
 	require_once("_includes/init.php"); 
 	require_once("_files/header.php"); 
 ?>
-    
-  	<title>Starter Template for Bootstrap</title>
+  	<title>Class</title>
   </head>
 
   <body>
@@ -12,9 +11,7 @@
 
     <div class="container myContent">
     	
-        <?php require_once("_files/templateFiles/form.html"); ?>
-        
-        <?php require_once("_files/templateFiles/table.html"); ?>
+        change this link from userinfo->id and class name to message page and then delete it and delete class.php from root
         
     </div><!-- /.container -->
     
