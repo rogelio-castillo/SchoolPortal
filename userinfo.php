@@ -5,7 +5,7 @@
 	}
 	$user = User::userinfo();
 	
-	if($_GET["remove"]){
+	if(isset($_GET["remove"])){
 		_Class::archive($_GET["remove"]);
 		redirect_to("userinfo.php");
 	}

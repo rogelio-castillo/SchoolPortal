@@ -7,7 +7,7 @@ class CommonClass{
 	
 	public static function find_by_id($id){
 		global $db;
-		$id = $db->validate($db);
+		$id = $db->validate($id);
 		$row = self::query("SELECT * FROM ".static::$tableName. " WHERE id = '{$id}'");
 		return $row[0];
 	}
