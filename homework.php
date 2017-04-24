@@ -1,16 +1,23 @@
+
 <?php
-    mysql_connect('localhost', 'root', '');
-    mysql_select_db('parent_teacher');
-$sql="SELECT * FROM homework";
-$contents=mysql_query($sql);
-?>
-    <!DOCTYPE html>
+    require_once("_includes/init.php");
+    require_once("_files/header.php");
+    ?>
+
+
+    <title>HOMEWORK</title>
 
     <body>
-        
+        <?php require_once("_files/menu.php");
+    
+            $sql="SELECT * FROM Homework";
+            $result=$db->query($sql);
+
+            ?>
+
         <div class ="container">
-            <h1>Parent Screen</h1>
-            <table width = "600" border="1" cellpadding="1" cellspacing="1">
+            <h1>Current Homework</h1>
+            <table width = "800" border="1" cellpadding="1" cellspacing="1">
                     <tr>
                         <th>Subject</th>
                         <th>Title</th>
@@ -19,23 +26,23 @@ $contents=mysql_query($sql);
                     <tr>
                     <!--Use a while loop to make a table row for every DB row-->
                     <?php
-                        while ($homework =mysql_fetch_assoc($contents)){
+                        while ($rows=$db->fetch_array($result)){
                             echo "<tr>";
-                            echo "<td>".$homework['subject']."</td>";
-                            echo "<td>".$homework['title']."</td>";
-                            echo "<td>".$homework['description']."</td>";
-                            echo "<td>".$homework['dueDate']."</td>";
+                            echo "<td>".$rows['subject']."</td>";
+                            echo "<td>".$rows['title']."</td>";
+                            echo "<td>".$rows['description']."</td>";
+                            echo "<td>".$rows['dueDate']."</td>";
                             echo "</tr>";
                         }
                     ?>
             </table>
-            
+
      <hr>
-     
+
         <div class ="container">
             <h1>HOMEWORK (Teacher Screen)</h1>
             <h2>Create new assignment</h2>
-            <form action="homework.php" method="post">
+            <form action="helper.php" method="post">
                   <div class="form-group">
                         <label for="name">Subject:</label>
                         <input type="text" id="subject" name="subject" class="form-control"placeholder="Enter the subject of the homework (eg. 'Math')">
@@ -50,16 +57,31 @@ $contents=mysql_query($sql);
                     </div>
                 <div class="form-group">
                         <label for="name">Due Date:</label>
-                            <input type="text" id="dueDate" name="dueDate" class="form-control"placeholder="(day/month/year)">
+                            <input type="text" id="dueDate" name="dueDate" class="form-control"placeholder="YYYY/MM/DD">
                             </div>
                 
                   <button name = "add" type="submit" class="btn btn-primary" style="margin: 10px auto;">Send</button>
             </form>
         
         <hr>
-        
-      
-        
 
-    </body>
+
+
+<?php require_once("_files/footer.php"); ?>
+
+<script>
+$(document).ready(function(){
+                  var date_input=$('input[name="date"]'); //our date input has the name "date"
+                  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                  var options={
+                  format: 'yyyy/mm/dd',
+                  //format: 'mm/dd/yyyy',
+                  container: container,
+                  todayHighlight: true,
+                  autoclose: true,
+                  };
+                  date_input.datepicker(options);
+                  })
+</script>
+</body>
 </html>
