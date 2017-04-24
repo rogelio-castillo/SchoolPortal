@@ -177,3 +177,13 @@ li.logout{
 div.addClass button, div.addClass{
 	margin: 10px 0;
 }
+
+div.error ul li{
+	color:red;
+}
+
+footer{
+	position:absolute;
+	bottom:0;
+	width:100%;
+}

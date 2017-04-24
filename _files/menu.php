@@ -13,10 +13,12 @@
       <?php if( User::isLoggedIn() ){ ?>
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">User Info</a></li>
-        <li><a href="#about">Homework</a></li>
-        <li><a href="#contact">To-Do List</a></li>
-        <li><a href="#contact">WishList</a></li>
-        <li><a href="#contact">Message Board</a></li>
+        <?php if( isset($_GET["classid"]) ){ ?>
+            <li><a href="#about">Homework</a></li>
+            <li><a href="#contact">To-Do List</a></li>
+            <li><a href="#contact">WishList</a></li>
+            <li><a href="#contact">Message Board</a></li>
+        <?php } ?>
         <li class="logout"> <a href="<?php echo $_SERVER["PHP_SELF"]."?logout=logout"; ?>">Logout</a> </li>
       </ul>
     <?php }//if user is logged in display menu 
