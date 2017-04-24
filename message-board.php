@@ -35,7 +35,7 @@
 			<th>Name</th>
 			<th>Subject</th>
 			<th>Message</th>
-			<th>Date/Time</th>
+			<th>Date and Time</th>
 		  </tr>
 		</thead>
 			<tbody>
