@@ -1,126 +1,56 @@
 <?php
 
-class Wishlist{
-	private static $tableName = "wishlist";
-	private static $vars = array("id","userid","item");
+class Wishlist extends commonClass{
+	protected static $tableName = "wishlist";
+	protected static $vars = array("id","userid","item","active","classid");
 	
 	
 	public $id;
 	public $userid;
 	public $item;
+	public $active;
+	public $classid;
 	
-	
-	public static function set($array){
-		$calledClass = get_called_class();
-		$class = new $calledClass;
-		
-		foreach(self::$vars as $index=>$variable){
-			if(isset($array[$variable])){
-				$class->{$variable} = $array[$variable];
-			}
-		}
-		return $class;
-	}
-	
-	public static function getAllItems(){
+	public static function getAllItems($classid){
 		global $db;
-		//$user = User::userinfo();
-		//if($user->type!=1)return false;
-				
-		//$query = "SELECT * FROM ".self::$tableName." WHERE userid= '".$user->id."'" ;
-		$query = "SELECT * FROM ".self::$tableName." " ;
+		$user = User::userinfo();
+		if($user->type==1){
+			return self::find_by_array(array("userid","classid"),array($user->id,$classid));
+		}
 		
+		$query = "SELECT * FROM ".self::$tableName." WHERE classid='".$classid."' AND (active='0' OR active='{$user->id}')" ;
 		$result_set = $db->query($query);
 		$rows = array();
-		while(($row = mysqli_fetch_array($result_set))) {
-			$rows[] = $row;
+		while(($row = $db->fetch_array($result_set))) {
+			$rows[] = self::set($row);
 		}
-		return $rows;
-		
+		return (!empty($rows))? $rows:false;
 	}
 	
-	
-	
-	public static function delete($id){
+	public function createWishlist($post){
 		global $db;
-		$id = $db->validate($id);
-		$query = "DELETE FROM `".self::$tableName."` WHERE id='".$id."'";
-		$result_set = $db->query($query);
-		return $result_set;
+		$user = User::userinfo();
+		$post["userid"] = $user->id;
+		$post["active"] = 0;
+		
+		$wishlist = self::set($post);
+		return $wishlist->create();
 	}
 	
-	public function create($post){
-		global $db;
+	public function signup($post,$user=""){
+		$wishlist = self::find_by_id($post["wishlist"]);
 		
-		
-		$query = "INSERT INTO `".self::$tableName."` (";
-		$query .= "userid, item";			
-		$query .= ")";		
-		$query .= "VALUES (";
-		//$query .= "'".$user->id."' , '".$post['item']."'";		
-		$query .= "1 , '".$post['item']."'";		
-		$query .= ")";
-		
-		//echo $query;exit;
-		$result_set = $db->query($query);
-		return $result_set;
-		
-	}
-	
-	public function update(){
-		global $db;
-		$query = "UPDATE `".self::$tableName."` SET ";
-		foreach(self::$vars as $index=>$variable){
-			$query .= "`".$variable."` = '". $this->{$variable}."'";
-			if($index!=sizeof(self::$vars)-1){
-				$query.=", ";
-			}
-		}
-		$query.= " WHERE `id` = '".$this->id."'";
-		$result_set = $db->query($query);
-		return $result_set;
-	}
-	
-	public function signup($signupArray){
-		global $db;
-		
-		//print_R($signupArray);exit;
-		$wishlistid = key($signupArray)	;
-		$checked = $signupArray[$wishlistid];
-		
-		if($checked==1){
-			$query = "REPLACE INTO `signup` (";
-			$query .= "userid, wishlistid";			
-			$query .= ")";		
-			$query .= "VALUES (";
-			//$query .= "'".$user->id."' , '".$wishlistid ."'";		
-			$query .= "1 , '".$wishlistid ."'";		
-			$query .= ")";
+		if(isset($post["signup"])){
+			$wishlist->active = $user->id;
 		}else{
-			//$query = "DELETE FROM `signup` WHERE wishlistid='".$wishlistid."' AND userid= '".$user->id."' ";
-			$query = "DELETE FROM `signup` WHERE wishlistid='".$wishlistid."'";
+			$wishlist->active = 0;
 		}
-		//echo $query;exit;
-		$result_set = $db->query($query);
-		return $result_set;
-		
+		return $wishlist->update();
 	}
 	
-	public function checkSignup($wishlistid){
-		global $db;
-			
-		//  $query = "SELECT * FROM `signup` WHERE wishlistid=".$wishlistid." AND userid= '".$user->id."'" ;
-		$query = "SELECT * FROM `signup` WHERE wishlistid=".$wishlistid."" ;
-		$result_set = $db->query($query);
-		
-		$rows = array();
-		while(($row = mysqli_fetch_array($result_set))) {
-			$rows[] = $row;
-		}
-		if(count($rows)>0){
-			return true;			
-		}
-		return false;
+	public function checkSignup($id){
+		$wishlist  = self::find_by_id($id);
+		return ($wishlist->active!=0)?true:false;
 	}
 	
 }

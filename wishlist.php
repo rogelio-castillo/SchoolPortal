@@ -2,27 +2,30 @@
   	<?php require_once("_includes/init.php"); ?>
 	
 	<?php
-	if(isset($_POST["item"])){
-		$class = Wishlist::create($_POST);
-		if(!empty($class)){
-			printA($class);
-		}
-	}
-	//print_R($_POST);exit;
-	if(isset($_POST["signup"])){
-		$class = Wishlist::signup($_POST["signup"]);
-		if(!empty($class)){
-			printA($class);
-		}
-	}
-	
-	
 	if(!User::isLoggedIn()){
 		redirect_to("login.php");
 	}
 	$user = User::userinfo();
 	
-	$wishlists = Wishlist::getAllItems();
+	if(!isset($_GET['classid']) || !_Class::isvalid($_GET["classid"])){
+		redirect_to("userinfo.php");
+	}
+	$classid = $_GET["classid"];
+	
+	if(isset($_POST["item"])){
+		$_POST["classid"]=$classid;
+		if(!Wishlist::createWishlist($_POST)){
+			$error[] = "Wishlist is not created.";
+		}
+	}
+	
+	if(isset($_POST["wishlist"])){
+		if(!Wishlist::signup($_POST,$user)){
+			$error[] = "Signup Error!!";
+		}
+	}
+	
+	$wishlists = Wishlist::getAllItems($classid);
 	
 	?>
 	
@@ -57,7 +60,7 @@
 			<tr>
 				<th>#</th>
 				<th>Item list</th>
-				<?php if($user->type!=2) : ?>
+				<?php if($user->type!=1) : ?>
 				<th>Signup</th>
 				<?php endif; ?> 
 
@@ -65,17 +68,17 @@
 			</tr>
 		</thead>
 	   <tbody>
-			<?php foreach($wishlists as $wishlist) : ?>
+			<?php foreach($wishlists as $index=>$wishlist) : ?>
 			<tr>
-			  <th scope="row"><?php echo $wishlist['id'] ?></th>
-			  <td><?php echo $wishlist['item'] ?></td>
-			  <?php if($user->type!=2) : ?>
+			  <th scope="row"><?php echo $index+1 ?></th>
+			  <td><?php echo $wishlist->item ?></td>
+			  <?php if($user->type!=1) : ?>
 				<td>
 				<form method="post">
-				  <input type='hidden' value="0" name="signup[<?php echo $wishlist['id'] ?>]">
-
-				<input type="checkbox" name="signup[<?php echo $wishlist['id'] ?>]" value="1" onChange="this.form.submit()" <?php if(Wishlist::checkSignup($wishlist['id'])==true){ echo "checked=checked"; }; ?>
+				<input type="checkbox" name="signup" onChange="this.form.submit()" 
+				<?php if($wishlist->active!="0"){ echo "checked=checked"; }; ?>
 />
+				<input type="hidden" name = "wishlist" value = "<?php echo $wishlist->id ?>">
 				</form></td>
 				<?php endif; ?> 
 

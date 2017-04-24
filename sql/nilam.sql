@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2017 at 01:21 AM
+-- Generation Time: Apr 24, 2017 at 11:22 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.5.38
 
@@ -28,10 +28,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `wishlist` (
   `id` int(3) NOT NULL,
+  `userid` varchar(255) NOT NULL,
   `classid` varchar(255) NOT NULL,
-  `parentid` varchar(255) NOT NULL,
-  `itemlist` varchar(255) NOT NULL
+  `item` text NOT NULL,
+  `active` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `userid`, `classid`, `item`, `active`) VALUES
+(2, '0XRKRo6l-crmyUra-sbgtE', 'MdLc-RaYK-bsAm', 'abcdef', '0');
 
 --
 -- Indexes for dumped tables
@@ -51,7 +59,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
