@@ -2,17 +2,14 @@
 
 class Wishlist{
 	private static $tableName = "wishlist";
-	private static $vars = array("id","classid","parentid","itemlist");
+	private static $vars = array("id","userid","item");
 	
 	
 	public $id;
-	public $classid;
-	public $parentid;
-	public $itemlist;
+	public $userid;
+	public $item;
 	
 	
-	
-	//common class
 	public static function set($array){
 		$calledClass = get_called_class();
 		$class = new $calledClass;
@@ -25,6 +22,25 @@ class Wishlist{
 		return $class;
 	}
 	
+	public static function getAllItems(){
+		global $db;
+		//$user = User::userinfo();
+		//if($user->type!=1)return false;
+				
+		//$query = "SELECT * FROM ".self::$tableName." WHERE userid= '".$user->id."'" ;
+		$query = "SELECT * FROM ".self::$tableName." " ;
+		
+		$result_set = $db->query($query);
+		$rows = array();
+		while(($row = mysqli_fetch_array($result_set))) {
+			$rows[] = $row;
+		}
+		return $rows;
+		
+	}
+	
+	
+	
 	public static function delete($id){
 		global $db;
 		$id = $db->validate($id);
@@ -33,24 +49,19 @@ class Wishlist{
 		return $result_set;
 	}
 	
-	public function create(){
+	public function create($post){
 		global $db;
+		
+		
 		$query = "INSERT INTO `".self::$tableName."` (";
-		foreach(self::$vars as $index=>$variable){
-			$query .= "`".$variable."`";
-			if($index!=sizeof(self::$vars)-1){
-				$query.=", ";
-			}
-		}
+		$query .= "userid, item";			
 		$query .= ")";		
 		$query .= "VALUES (";
-		foreach(self::$vars as $index=>$variable){
-			$query .= "'".$this->{$variable} . "'";
-			if($index!=sizeof(self::$vars)-1){
-				$query.=", ";
-			}
-		}
+		//$query .= "'".$user->id."' , '".$post['item']."'";		
+		$query .= "1 , '".$post['item']."'";		
 		$query .= ")";
+		
+		//echo $query;exit;
 		$result_set = $db->query($query);
 		return $result_set;
 		
@@ -70,7 +81,47 @@ class Wishlist{
 		return $result_set;
 	}
 	
+	public function signup($signupArray){
+		global $db;
+		
+		//print_R($signupArray);exit;
+		$wishlistid = key($signupArray)	;
+		$checked = $signupArray[$wishlistid];
+		
+		if($checked==1){
+			$query = "REPLACE INTO `signup` (";
+			$query .= "userid, wishlistid";			
+			$query .= ")";		
+			$query .= "VALUES (";
+			//$query .= "'".$user->id."' , '".$wishlistid ."'";		
+			$query .= "1 , '".$wishlistid ."'";		
+			$query .= ")";
+		}else{
+			//$query = "DELETE FROM `signup` WHERE wishlistid='".$wishlistid."' AND userid= '".$user->id."' ";
+			$query = "DELETE FROM `signup` WHERE wishlistid='".$wishlistid."'";
+		}
+		//echo $query;exit;
+		$result_set = $db->query($query);
+		return $result_set;
+		
+	}
 	
+	public function checkSignup($wishlistid){
+		global $db;
+			
+		//  $query = "SELECT * FROM `signup` WHERE wishlistid=".$wishlistid." AND userid= '".$user->id."'" ;
+		$query = "SELECT * FROM `signup` WHERE wishlistid=".$wishlistid."" ;
+		$result_set = $db->query($query);
+		
+		$rows = array();
+		while(($row = mysqli_fetch_array($result_set))) {
+			$rows[] = $row;
+		}
+		if(count($rows)>0){
+			return true;			
+		}
+		return false;
+	}
 	
 }
 ?>
