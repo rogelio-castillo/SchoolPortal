@@ -1,9 +1,4 @@
 <?php
-	if(isset($_GET["logout"])){
-		User::logout();
-		redirect_to("index.php");
-	}
-	
 	//for menu items: messages, todo list...
 	if(isset($_GET["classid"]) && !_Class::isvalid($_GET["classid"]))redirect_to("userinfo.php");
 ?>

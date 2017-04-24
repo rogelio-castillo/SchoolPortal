@@ -5,8 +5,7 @@
  */
 
 body {
-
-  padding-top: 60px;
+  padding-top: 100px;
   width: 1080px;
   margin: auto;
 }
@@ -63,6 +62,7 @@ footer p:last-child {
 
 .footer-down{
 	position:absolute;
+	left:0;
 	width:100%;
 	bottom:0;
 }
@@ -180,10 +180,4 @@ div.addClass button, div.addClass{
 
 div.error ul li{
 	color:red;
-}
-
-footer{
-	position:absolute;
-	bottom:0;
-	width:100%;
 }

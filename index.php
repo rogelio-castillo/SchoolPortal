@@ -1,13 +1,5 @@
-
 <?php  
-	require_once("_includes/init.php");
-
-?>
-
-<?php 
 require_once("_includes/init.php");
-//check if user was already login 
-//redirect to homepage
 
 if(User::isLoggedIn()){
 	redirect_to("userinfo.php");

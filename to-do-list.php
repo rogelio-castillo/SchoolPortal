@@ -10,10 +10,6 @@
 	}
 	$classid = $_GET["classid"]; 
 	
-	
-	
-	//check if add todolist form is submited then validate and add everything to db	
-	
   	require_once("_files/header.php"); 
 	?>
     
@@ -36,17 +32,15 @@
     <?php require_once("_files/menu.php"); 
 		
 		//Selects all table contents by class id
-		$sql="SELECT * FROM todolist 
-			  WHERE classid='{$classid}' ORDER BY date ASC";
-			  $result=$db->query($sql);
-			//$result=mysqli_query($sql);
-
+		$sql = "SELECT * FROM todolist 
+				JOIN class ON class.classid=todolist.classid
+				WHERE todolist.classid='{$classid}' AND date>NOW() ORDER BY date ASC";
+		$result=$db->query($sql);
 	?>
 	
     <div class="container">
 	
 	<?php
-		//if($user->type==1) : 
 		if($user->type==1){ ?>
 		<h1>Teacher View</h1>
 		
@@ -72,7 +66,7 @@
 			  <thead class="thead-default">
 				<tr>
 				  <th>No.</th>
-				  <th>Class ID</th>
+				  <th>Course</th>
 				  <th>To-do-list</th>
 				  <th>Due Date</th>
 				</tr>
@@ -82,10 +76,11 @@
 				<?php
 				//display task list	
 				//Loops through table rows and prints the values
+				$index =1;
 				while($rows=$db->fetch_array($result)){
 					?>		
-						<td><?php echo $rows['id'];?></td>
-						<td><?php echo $rows['classid'];?></td>
+						<td><?php echo $index++;?></td>
+						<td><?php echo $rows['className'];?></td>
 						<td><?php echo $rows['task'];?></td>
 						<td><?php echo $rows['date'];?></td>
 					</tr>
@@ -103,8 +98,8 @@
       var date_input=$('input[name="date"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-		//format: 'yyyy/mm/dd',
-        format: 'mm/dd/yyyy',
+		format: 'yyyy/mm/dd',
+        //format: 'mm/dd/yyyy',
         container: container,
         todayHighlight: true,
         autoclose: true,

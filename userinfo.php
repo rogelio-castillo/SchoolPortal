@@ -100,10 +100,10 @@
                       <td><?php echo $index+1; ?></td>
                       
                       <?php if($user->type==1){//only for teachers ?>
-                        <td><a href="class.php?classid=<?php echo $class->classid; ?>"><?php echo $class->classid; ?></a></td>
+                        <td><a href="homework.php?classid=<?php echo $class->classid; ?>"><?php echo $class->classid; ?></a></td>
                       <?php } ?>
                       
-                      <td><a href="class.php?classid=<?php echo $class->classid; ?>"><?php echo $class->classinfo->className; ?></a></td>
+                      <td><a href="homework.php?classid=<?php echo $class->classid; ?>"><?php echo $class->classinfo->className; ?></a></td>
                       
                       <?php if($user->type==1){//only for teachers ?>
                         <td><a href="parentinfo.php?classid=<?php echo $class->classid; ?>"><?php echo $class->parentsCount; ?></a></td>

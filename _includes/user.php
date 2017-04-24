@@ -125,6 +125,7 @@ class User extends commonClass{
 	
 	public static function logout(){
 		if(!isset($_SESSION["userid"]))return true;
+		$_SESSION["userid"]="";
 		unset($_SESSION["userid"]);return true;
 	}
 }

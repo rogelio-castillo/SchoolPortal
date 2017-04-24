@@ -4,18 +4,21 @@ class Wishlist extends commonClass{
 	protected static $tableName = "wishlist";
 	protected static $vars = array("id","userid","item","active","classid");
 	
-	
 	public $id;
 	public $userid;
 	public $item;
 	public $active;
 	public $classid;
-	
+
 	public static function getAllItems($classid){
 		global $db;
 		$user = User::userinfo();
 		if($user->type==1){
-			return self::find_by_array(array("userid","classid"),array($user->id,$classid));
+			$wishlists = self::find_by_array(array("userid","classid"),array($user->id,$classid));
+			foreach($wishlists as $wishlist){
+				$wishlist->active=User::find_by_id($wishlist->active);
+			}
+			return $wishlists;
 		}
 		
 		$query = "SELECT * FROM ".self::$tableName." WHERE classid='".$classid."' AND (active='0' OR active='{$user->id}')" ;
@@ -27,19 +30,17 @@ class Wishlist extends commonClass{
 		return (!empty($rows))? $rows:false;
 	}
 	
-	public function createWishlist($post){
+	public static function createWishlist($post){
 		global $db;
 		$user = User::userinfo();
 		$post["userid"] = $user->id;
 		$post["active"] = 0;
-		
 		$wishlist = self::set($post);
 		return $wishlist->create();
 	}
 	
-	public function signup($post,$user=""){
+	public static function signup($post,$user=""){
 		$wishlist = self::find_by_id($post["wishlist"]);
-		
 		if(isset($post["signup"])){
 			$wishlist->active = $user->id;
 		}else{
@@ -52,6 +53,5 @@ class Wishlist extends commonClass{
 		$wishlist  = self::find_by_id($id);
 		return ($wishlist->active!=0)?true:false;
 	}
-	
 }
 ?>
