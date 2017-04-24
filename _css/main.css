@@ -5,9 +5,22 @@
  */
 
 body {
-	padding-top: 60px;
-	font-family: Georgia, "Times New Roman", Times, serif;
-	color: #555;
+
+  padding-top: 60px;
+  width: 1080px;
+  margin: auto;
+}
+
+table { 
+   margin:10px auto; 
+   border-collapse:collapse; 
+   border:1px solid gray; 
+}
+		
+td,th { 
+   border:1px solid gray; 
+   text-align:left; 
+   padding:20px; 
 }
 
 h1, .h1,
