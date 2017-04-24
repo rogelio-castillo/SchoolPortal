@@ -1,6 +1,13 @@
-
 <?php
     require_once("_includes/init.php");
+	if(!User::isLoggedIn()){
+		redirect_to("index.php");
+	}
+	$user = User::userinfo();
+	
+	
+	
+	
     require_once("_files/header.php");
     ?>
 
