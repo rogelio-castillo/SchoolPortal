@@ -61,15 +61,15 @@
             <table class="table">
                <tbody>
                 <tr>
-                  <td>First Name:</td>
+                  <td><strong>First Name:</strong></td>
                   <td><?php echo $user->firstname; ?></td>
                 </tr>
                 <tr>
-                  <td>Last  Name:</td>
+                  <td><strong>Last  Name:</strong></td>
                   <td><?php echo $user->lastname; ?></td>
                 </tr>
                 <tr>
-                  <td>Username:</td>
+                  <td><strong>Username:<strong></td>
                   <td><?php echo $user->username; ?></td>
                 </tr>
                </tbody>
