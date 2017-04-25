@@ -4,24 +4,16 @@
 		redirect_to("index.php");
 	}
 	$user = User::userinfo();
-	
-	
-	
-	
     require_once("_files/header.php");
     ?>
 
 
     <title>HOMEWORK</title>
-
     <body>
         <?php require_once("_files/menu.php");
-    
             $sql="SELECT * FROM Homework";
             $result=$db->query($sql);
-
-            ?>
-
+        ?>
         <div class ="container">
             <h1>Current Homework</h1>
             <table width = "800" border="1" cellpadding="1" cellspacing="1">
@@ -78,17 +70,17 @@
 
 <script>
 $(document).ready(function(){
-                  var date_input=$('input[name="date"]'); //our date input has the name "date"
-                  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                  var options={
-                  format: 'yyyy/mm/dd',
-                  //format: 'mm/dd/yyyy',
-                  container: container,
-                  todayHighlight: true,
-                  autoclose: true,
-                  };
-                  date_input.datepicker(options);
-                  })
+	var date_input=$('input[name="date"]'); //our date input has the name "date"
+	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+	var options={
+		format: 'yyyy/mm/dd',
+		//format: 'mm/dd/yyyy',
+		container: container,
+		todayHighlight: true,
+		autoclose: true,
+	};
+	date_input.datepicker(options);
+})
 </script>
 </body>
 </html>
