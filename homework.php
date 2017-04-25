@@ -1,12 +1,17 @@
 <?php
     require_once("_includes/init.php");
-	if(!User::isLoggedIn()){
-		redirect_to("index.php");
-	}
-	$user = User::userinfo();
+
+    if(!User::isLoggedIn()){
+        redirect_to("index.php");
+    }
+    $user = User::userinfo();
+    if (!isset($_GET["classid"]) || !_class::isvalid($_GET["classid"])){
+        redirect_to("userinfo.php");
+    }
+    $classid = $_GET["classid"];
+	
     require_once("_files/header.php");
     ?>
-
 
     <title>HOMEWORK</title>
     <body>
@@ -33,10 +38,13 @@
                             echo "<td>".$rows['dueDate']."</td>";
                             echo "</tr>";
                         }
-                    ?>
+                        ?>
             </table>
 
      <hr>
+
+    <?php
+        if($user->type==1){ ?>
 
         <div class ="container">
             <h1>HOMEWORK (Teacher Screen)</h1>
@@ -61,26 +69,23 @@
                 
                   <button name = "add" type="submit" class="btn btn-primary" style="margin: 10px auto;">Send</button>
             </form>
+    <?php } ?>
         
         <hr>
-
-
-
-<?php require_once("_files/footer.php"); ?>
-
-<script>
-$(document).ready(function(){
-	var date_input=$('input[name="date"]'); //our date input has the name "date"
-	var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-	var options={
-		format: 'yyyy/mm/dd',
-		//format: 'mm/dd/yyyy',
-		container: container,
-		todayHighlight: true,
-		autoclose: true,
-	};
-	date_input.datepicker(options);
-})
-</script>
-</body>
+    <?php require_once("_files/footer.php"); ?>
+        <script>
+            $(document).ready(function(){
+                var date_input=$('input[name="date"]'); //our date input has the name "date"
+                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                var options={
+                    format: 'yyyy/mm/dd',
+                    //format: 'mm/dd/yyyy',
+                    container: container,
+                    todayHighlight: true,
+                    autoclose: true,
+                };
+                date_input.datepicker(options);
+            });
+        </script>
+    </body>
 </html>
