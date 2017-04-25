@@ -9,7 +9,7 @@
 	require_once("_files/header.php"); 
 ?>
     
-  	<title>Parents Info</title>
+  	<title>Parents Information</title>
   </head>
 
   <body>
@@ -22,6 +22,8 @@
         </div>
         
         <div class="col-md-12">
+		<h1>User Information</h1>
+		<p>User information is listed below.</p>
             <table class="table">
                <thead>
                 <tr>
@@ -52,7 +54,9 @@
         
     </div><!-- /.container -->
     
-	<?php require_once("_files/footer.php"); ?>
+	<div class="footer">
+	<p>&copy; 2017 CHR Portal</p>
+	</div>
     
   </body>
 </html>

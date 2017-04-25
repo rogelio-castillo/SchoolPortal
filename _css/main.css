@@ -1,11 +1,14 @@
-
-
 /*
  * Globals
  */
 
 body {
-  padding-top: 100px;
+  background-image: url('../_images/background.jpg');
+  background-repeat: repeat-x;
+  background-position: center;
+  background-attachment: fixed;
+  padding-top: 80px;
+  padding-bottom: 50px;
   width: 1080px;
   margin: auto;
 }
@@ -13,13 +16,19 @@ body {
 table { 
    margin:10px auto; 
    border-collapse:collapse; 
-   border:1px solid gray; 
 }
 		
-td,th { 
-   border:1px solid gray; 
+td,th {   
    text-align:left; 
    padding:20px; 
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(odd){background-color: #FFFFFF}
+
+th {
+    background-color: #696969;
+    color: white;
 }
 
 h1, .h1,
@@ -33,7 +42,6 @@ h6, .h6 {
   font-weight: normal;
   color: #333;
 }
-
 
 /*
  * Override Bootstrap's default container.
@@ -49,24 +57,27 @@ h6, .h6 {
  * Footer
  */
 
-footer {
-  padding: 40px 0;
-  color: #999;
-  text-align: center;
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
   background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+  text-align: left;
 }
+
 footer p:last-child {
   margin-bottom: 0;
 }
 
 .footer-down{
-	position:absolute;
+	position: absolute;
 	left:0;
+	right:0;
 	width:100%;
 	bottom:0;
 }
-
 
 .panel-login {
     border-color: #ccc;
@@ -164,6 +175,21 @@ footer p:last-child {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+
+.btn-mainbutton {
+    background-color: #008CBA;
+    border: none;
+	border-radius: 8px;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 
 .panel-login{
 	margin-top:100px;

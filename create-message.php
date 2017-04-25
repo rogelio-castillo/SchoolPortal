@@ -20,7 +20,7 @@
     <?php require_once("_files/menu.php"); ?>
 
     <div class="container myContent">
-	<h2>Messages</h2>
+	<h1>Messages</h1>
 	<p>Create a new message using the form below.</p>
 	<form action="add-msg.php?classid=<?php echo $classid; ?>" method= "POST">
 		<div class="form-group">
@@ -35,12 +35,14 @@
 			<label for="message">Message:</label>
 			<textarea class="form-control" name="message" rows="5" id="message" placeholder="Enter message"></textarea>
 		</div>
-		<button type="submit" class="btn btn-default">Send Message</button>
+		<button type="submit" class="btn btn-mainbutton">Send Message</button>
 	</form>
 	</div>	        
     </div><!-- /.container -->
     
-	<?php require_once("_files/footer.php"); ?>
+	<div class="footer">
+	<p>&copy; 2017 CHR Portal</p>
+	</div>
     
   </body>
 </html>

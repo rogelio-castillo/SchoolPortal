@@ -27,12 +27,12 @@
 	?>
 
     <div class="container myContent">
-		<h2>Welcome to your Message Board</h2>
+		<h1>Welcome to your Message Board</h1>
 		<p>View your messages below.</p>
-	  <table class="table table-striped">
+	  <table class="table">
 		<thead>
 		  <tr>
-			<th>Name</th>
+			<th>From</th>
 			<th>Subject</th>
 			<th>Message</th>
 			<th>Date and Time</th>
@@ -57,8 +57,11 @@
 		<div><a href="create-message.php?classid=<?php echo $classid ?>">Create New Message</a>
 		</div>
     </div><!-- /.container -->
-    
-	<?php require_once("_files/footer.php"); ?>
+	
+	<div class="footer">
+	<p>&copy; 2017 CHR Portal</p>
+	</div>
+
     
   </body>
 </html>

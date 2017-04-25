@@ -136,8 +136,10 @@ require_once("_files/header.php");
 			</div>
 		</div>
     </div><!-- /.container -->        
-    <div class="footer-down">
-	<?php require_once("_files/footer.php"); ?>
+    <div class="footer">
+	<p>&copy; 2017 CHR Portal</p>
+	</div>
+	<div class="footer-down">
     <script src="_js/login.js"></script>
     </div>
   </body>

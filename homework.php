@@ -14,21 +14,31 @@
     require_once("_files/header.php");
     ?>
 
-    <title>HOMEWORK</title>
+    <title>Homework</title>
+	
+	<!-- Bootstrap Date-Picker Plugin -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+	
+    </head>
+	
     <body>
         <?php require_once("_files/menu.php");
             $sql="SELECT * FROM Homework JOIN class ON class.classid=Homework.classid";
             $result=$db->query($sql);
         ?>
-        <div class ="container">
-            <h1>Current Homework</h1>
-            <table width = "800" border="1" cellpadding="1" cellspacing="1">
-                    <tr>
+        <div class ="container myContent">
+            <h1>Homework</h1>
+			<p>Homework assignments are listed below.</p>
+            <table class ="table">
+                    <thead>
+					<tr>
                         <th>Subject</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Due Date</th>
                     <tr>
+					</thead>
                     <!--Use a while loop to make a table row for every DB row-->
                     <?php 
                         while ($rows=$db->fetch_array($result)){
@@ -42,34 +52,33 @@
                         ?>
             </table>
 
-     <hr>
 
     <?php
         if($user->type==1){ ?>
 
-        <div class ="container">
-            <h1>HOMEWORK (Teacher Screen)</h1>
-            <h2>Create new assignment</h2>
-            <form action="helper.php?classid=<?php echo $classid; ?>" method="post">
-                <div class="form-group">
-                        <label for="name">Title:</label>
-                            <input type="text" id="title" name="title" class="form-control"placeholder="Enter title of the homework">
-                            </div>
-                  <div class="form-group">
-                        <label for="msg">Description:</label>
-                        <input type= "text" class="form-control" textarea id="msg" name="description" placeholder="Enter a short description of the assignment here"></textarea>
-                    </div>
-                <div class="form-group">
-                        <label for="name">Due Date:</label>
-                            <input type="text" id="dueDate" name="dueDate" class="form-control"placeholder="YYYY/MM/DD">
-                            </div>
-                
-                  <button name = "add" type="submit" class="btn btn-primary" style="margin: 10px auto;">Send</button>
-            </form>
+            <h2>Assignment Posting</h2>
+            <p>Create a new homework post with the form below.</p>
+			<form action="helper.php?classid=<?php echo $classid; ?>" method= "POST">
+		<div class="form-group">
+			<label for="name">Title:</label>
+			<input type="text" name="title" class="form-control" id="title" placeholder="Enter title of the homework">
+		</div>
+		<div class="form-group">
+			<label for="msg">Description:</label>
+			<textarea class="form-control" name="description" rows="2" id="msg" placeholder="Enter a short description of the assignment here"></textarea>
+		</div>
+		<div class="form-group bootstrap-iso"> <!-- Date input -->
+			<label class= "control-label" for="dueDate">Due Date:</label>
+			<input type="text" name="dueDate" class="form-control" id="dueDate" placeholder="YYYY/MM/DD">
+		</div>
+		<button type="submit" name= "add" class="btn btn-mainbutton">Send</button>
+	</form>
     <?php } ?>
+	</div> <!-- /.container -->
+    <div class="footer">
+	<p>&copy; 2017 CHR Portal</p>
+	</div>
         
-        <hr>
-    <?php require_once("_files/footer.php"); ?>
         <script>
             $(document).ready(function(){
                 var date_input=$('input[name="date"]'); //our date input has the name "date"

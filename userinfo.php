@@ -36,7 +36,7 @@
         	<?php print_error();?>
         	
             <div class="addClass">
-                <button type="button" class="btn btn-info btn-lg col-md-6 show">Add Class</button>
+                <button type="button" class="btn btn-mainbutton col-md-6 show">Add Class</button>
                 <span class="clearfix"></span>
                 <form class ="form-horizontal" hidden method="post">
                   <?php if($user->type==1){ ?>
@@ -49,25 +49,27 @@
                         </div>
                   <?php } ?>
                   <div class="form-group col-md-10">
-                    <button name="addClass" type="submit" class="btn btn-success">Submit</button>
+                    <button name="addClass" type="submit" class="btn btn-mainbutton">Submit</button>
                   </div>
                 </form>
             </div>
         </div>    
         
         <div class="col-md-12">
+		<h1>User Information</h1>
+		<p>User information is listed below.</p>
             <table class="table">
                <tbody>
                 <tr>
-                  <td>First Name</td>
+                  <td>First Name:</td>
                   <td><?php echo $user->firstname; ?></td>
                 </tr>
                 <tr>
-                  <td>Last  Name</td>
+                  <td>Last  Name:</td>
                   <td><?php echo $user->lastname; ?></td>
                 </tr>
                 <tr>
-                  <td>Username</td>
+                  <td>Username:</td>
                   <td><?php echo $user->username; ?></td>
                 </tr>
                </tbody>
@@ -125,7 +127,9 @@
         
     </div><!-- /.container -->
     
-	<?php require_once("_files/footer.php"); ?>
+	<div class="footer">
+	<p>&copy; 2017 CHR Portal</p>
+	</div>
     
   </body>
 </html>
