@@ -1,5 +1,6 @@
 <?php
     require_once("_includes/init.php");
+<<<<<<< HEAD
     //printA($_POST);die;
     if(!User::isLoggedIn()){
         redirect_to("index.php");
@@ -14,6 +15,16 @@
     
     //check if add todolist form is submited then validate and add everything to db
     
+=======
+	if(!User::isLoggedIn()){
+		redirect_to("index.php");
+	}
+	$user = User::userinfo();
+	
+	
+	
+	
+>>>>>>> 04a981a6e6173ab4e303e8a896ca152242dcc8fb
     require_once("_files/header.php");
     ?>
 
