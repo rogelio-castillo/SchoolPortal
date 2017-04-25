@@ -74,14 +74,15 @@
 		<button type="submit" name= "add" class="btn btn-mainbutton">Send</button>
 	</form>
     <?php } ?>
+
 	</div> <!-- /.container -->
     <div class="footer">
 	<p>&copy; 2017 CHR Portal</p>
 	</div>
-        
+ 
         <script>
             $(document).ready(function(){
-                var date_input=$('input[name="date"]'); //our date input has the name "date"
+                var date_input=$('input[name="dueDate"]'); //our date input has the name "date"
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 var options={
                     format: 'yyyy/mm/dd',
