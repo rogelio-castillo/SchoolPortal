@@ -24,7 +24,7 @@
 	
     <body>
         <?php require_once("_files/menu.php");
-            $sql="SELECT * FROM Homework JOIN class ON class.classid=Homework.classid";
+            $sql="SELECT * FROM Homework JOIN class ON class.classid=Homework.classid ORDER by `dueDate` ASC";
             $result=$db->query($sql);
         ?>
         <div class ="container myContent">
